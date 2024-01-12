@@ -86,6 +86,7 @@ fn to_proptest_config(args: Args) -> TokenStream {
         parse_quote!(<proptest::test_runner::Config as std::default::Default>::default())
     });
     quote! {
+        #[cfg_attr(coverage_nightly, coverage(off))]
         #![proptest_config(proptest::test_runner::Config {
             #(#inits,)*
             .. #base_expr
